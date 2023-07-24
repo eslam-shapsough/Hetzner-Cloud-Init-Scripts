@@ -17,7 +17,7 @@ write_files:
       [Resolve]
       DNS=8.8.8.8 1.1.1.1
     append: false
-- path: /etc/fail2ban/jail.local
+  - path: /etc/fail2ban/jail.local
     content: |
       [DEFAULT] 
       ignoreip = 127.0.0.1/32
