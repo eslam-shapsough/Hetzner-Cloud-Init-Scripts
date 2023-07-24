@@ -28,6 +28,6 @@ runcmd:
   - ufw default deny incoming
   - ufw default allow outgoing
   - ufw allow 22
-  - echo "y" | ufw enable
+  - echo y | ufw enable
   - systemctl enable fail2ban
   - systemctl restart fail2ban
