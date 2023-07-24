@@ -31,3 +31,4 @@ runcmd:
   - echo y | ufw enable
   - systemctl enable fail2ban
   - systemctl restart fail2ban
+  - reboot
