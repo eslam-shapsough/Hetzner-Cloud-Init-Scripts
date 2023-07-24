@@ -26,7 +26,7 @@ write_files:
       backend = auto
       [sshd] 
       enabled = true
-    append: false
+  append: false
 runcmd:
 # Configure Firewall
   - ufw default deny incoming
