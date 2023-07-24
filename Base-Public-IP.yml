@@ -1,0 +1,38 @@
+#cloud-config
+# Install Base Packages
+packages:
+  - fail2ban
+  - ufw
+  - curl
+  - htop
+  - nano
+  - git
+  - nmap
+  - nfs-common
+  - wget
+# Update Everything
+package_update: true
+package_upgrade: true
+# Fail2Ban Config File
+write_files:
+  - path: /etc/fail2ban/jail.loca
+    content: |
+      [DEFAULT] 
+      ignoreip = 127.0.0.1/32
+      bantime  = 3600
+      findtime  = 300
+      maxretry = 3
+      banaction = iptables-multiport
+      backend = auto
+      [sshd] 
+      enabled = true
+    append: false
+runcmd:
+# Configure Firewall
+  - ufw default deny incoming
+  - ufw default allow outgoing
+  - ufw allow 22
+  - echo "y" | ufw enable
+# Fail2Ban Service
+  - systemctl enable fail2ban
+  - systemctl restart fail2ban
