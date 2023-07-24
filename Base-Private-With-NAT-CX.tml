@@ -43,6 +43,7 @@ packages:
   - nmap
   - nfs-common
   - wget
+  - mlocate
 runcmd:
   - ufw default deny incoming
   - ufw default allow outgoing
