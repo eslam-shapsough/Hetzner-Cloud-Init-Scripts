@@ -11,7 +11,7 @@ write_files:
             routes:
             - to: 0.0.0.0/0
               via: 10.10.250.250
-- path: /etc/systemd/resolved.conf
+  - path: /etc/systemd/resolved.conf
     content: |
       [Resolve]
       DNS=8.8.8.8 1.1.1.1
