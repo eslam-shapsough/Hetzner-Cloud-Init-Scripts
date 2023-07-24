@@ -11,6 +11,7 @@ packages:
   - nmap
   - nfs-common
   - wget
+  - mlocate
 write_files:
   - path: /etc/fail2ban/jail.local
     content: |
