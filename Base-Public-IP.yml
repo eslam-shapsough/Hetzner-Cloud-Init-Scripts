@@ -1,4 +1,6 @@
 #cloud-config
+package_update: true
+package_upgrade: true
 packages:
   - fail2ban
   - ufw
@@ -9,8 +11,6 @@ packages:
   - nmap
   - nfs-common
   - wget
-package_update: true
-package_upgrade: true
 write_files:
   - path: /etc/fail2ban/jail.local
     content: |
