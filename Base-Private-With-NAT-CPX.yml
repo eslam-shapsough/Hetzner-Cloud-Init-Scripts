@@ -1,0 +1,54 @@
+#cloud-config
+write_files:
+  - path: /etc/netplan/51-netcfg.yaml
+    permissions: '0644'
+    content: |
+      network:
+        version: 2
+        ethernets:
+          ens10:
+            dhcp4: true
+            routes:
+            - to: 0.0.0.0/0
+              via: 10.10.250.250
+    append: false
+  - path: /etc/systemd/resolved.conf
+    content: |
+      [Resolve]
+      DNS=8.8.8.8 1.1.1.1
+    append: false
+  - path: /etc/fail2ban/jail.local
+    content: |
+      [DEFAULT] 
+      ignoreip = 127.0.0.1/32
+      bantime  = 3600
+      findtime  = 300
+      maxretry = 3
+      banaction = iptables-multiport
+      backend = auto
+      [sshd] 
+      enabled = true
+    append: false
+runcmd:
+  - netplan apply
+package_update: true
+package_upgrade: true
+packages:
+  - fail2ban
+  - ufw
+  - curl
+  - htop
+  - nano
+  - git
+  - nmap
+  - nfs-common
+  - wget
+  - mlocate
+runcmd:
+  - ufw default deny incoming
+  - ufw default allow outgoing
+  - ufw allow 22
+  - echo y | ufw enable
+  - systemctl enable fail2ban
+  - systemctl restart fail2ban
+  - reboot
