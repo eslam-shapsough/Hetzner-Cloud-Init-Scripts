@@ -6,7 +6,7 @@ write_files:
       network:
         version: 2
         ethernets:
-          ens10:
+          enp7s0:
             dhcp4: true
             routes:
             - to: 0.0.0.0/0
